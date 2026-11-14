@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111322">
+  <meta name="description" content="StagePick — 좋아하는 음악에서 새로운 아티스트와 공연까지. AI 추천 경험을 시연하는 AX 프로젝트 프로토타입.">
+  <title>StagePick v2 — 음악을 발견하고, 무대를 만나다</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#taste">본문으로 이동</a>
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="#home" aria-label="StagePick 홈"><span class="brand-icon">✳</span> stagepick<span class="brand-period">.</span></a>
+    <nav class="main-nav" aria-label="주 메뉴" id="main-nav">
+      <a href="#taste">취향 매칭</a><a href="#artists">아티스트</a><a href="#events">공연 탐색</a><a href="#organizers">정보 등록</a>
+    </nav>
+    <div class="nav-actions"><a class="bookmark-link" href="#events" id="saved-nav" aria-label="저장한 공연 보기">♡ <span>저장한 공연</span> <b id="saved-count">0</b></a><button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="메뉴 열기">☰</button></div>
+  </div>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="shell"><div class="hero-panel">
+    <div class="hero-copy"><div class="caps kicker"><span class="signal"></span> THE NEXT SOUND IS CLOSER THAN YOU THINK</div>
+      <h1>좋아하는 음악,<br><em>그다음은 무대.</em></h1>
+      <p>익숙한 아티스트를 넘어, 아직 몰랐던 음악까지.<br>취향에 맞는 아티스트를 발견하고 새로운 공연의 가능성을 찾아보세요.</p>
+      <div class="hero-actions"><a href="#taste" class="button button-lime">내 취향 발견하기 <span>↗</span></a><a href="#events" class="text-link">공연 둘러보기 <span>→</span></a></div>
+      <div class="hero-proof"><span>✦ 취향 기반 추천</span><span>✦ 새로운 음악 발견</span><span>✦ 관람 조건 매칭</span></div>
+    </div>
+    <div class="hero-graphic" aria-hidden="true"><div class="hero-halo"></div><div class="big-vinyl"><div class="vinyl-center"><b>STAGE</b><small>PLAY SIDE A</small></div></div><div class="floating-note note-one"><span>NOW DISCOVERING</span><strong>YOUR NEXT FAVORITE</strong><div class="wave-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="floating-note note-two"><span>LISTEN → DISCOVER → LIVE</span><strong>Go beyond the playlist.</strong></div></div>
+  </div></div>
+</section>
+<div class="shell"><div class="prototype-notice"><div class="notice-icon">ⓘ</div><div><b>프로토타입 안내</b> 이 서비스는 AX 프로젝트 시연용입니다. <strong>공연 일정·장소·가격은 가상 예시</strong>이며 실제 예매할 수 없습니다. 아티스트 및 음악 링크도 시연 전 최종 확인이 필요합니다.</div><span class="notice-chip">V2 DEMO</span></div></div>
+<section class="section section-taste" id="taste"><div class="shell">
+  <div class="section-heading"><div><span class="section-kicker">01 / PERSONAL DISCOVERY</span><h2>어떤 음악에<br><span>마음이 움직이나요?</span></h2><p>취향을 알려주면, 그 취향에 가까운 아티스트와 공연을 찾아볼게요.</p></div><div class="section-aside">나의 음악 취향에서 시작해<br>새로운 라이브 경험으로</div></div>
+  <div class="taste-grid"><form class="panel taste-form" id="taste-form" novalidate>
+    <div class="panel-title"><div><span class="step-pill">STEP 01</span><h3>취향을 들려주세요</h3></div><span class="subtle">약 30초</span></div>
+    <div class="form-field"><label for="favorite">좋아하는 아티스트 또는 노래 <span class="optional">선택</span></label><input id="favorite" class="control" maxlength="100" placeholder="예: wave to earth, NO PAIN, 백예린"><p class="hint">입력한 아티스트와 음악적 특징이 가까운 후보도 함께 살펴봐요.</p></div>
+    <div class="form-field"><label>끌리는 음악 장르 <span class="required">필수 · 복수 선택 가능</span></label><div id="genre-chips" class="chips" role="group" aria-label="선호 장르"></div></div>
+    <div class="form-field"><label>좋아하는 음악의 분위기 <span class="required">필수</span></label><div id="mood-chips" class="chips" role="group" aria-label="선호 분위기"></div></div>
+    <div class="form-field"><div class="field-spread"><label for="novelty">새로운 아티스트 발견 정도</label><output id="novelty-label" for="novelty">새로운 발견도 함께</output></div><input id="novelty" type="range" min="0" max="100" step="25" value="50"><div class="range-caption"><span>익숙한 음악 중심</span><span>새로운 발견 적극 탐색</span></div></div>
+    <div class="form-field"><div class="two-fields"><label>공연 희망 지역<select class="control" id="region"><option>서울</option><option>부산</option><option>인천</option><option>대전</option><option>대구</option><option>광주</option><option value="전체">전국</option></select></label><label>티켓 예산<select class="control" id="budget"><option value="20000">2만 원 이하</option><option value="30000">3만 원 이하</option><option value="50000" selected>5만 원 이하</option><option value="70000">7만 원 이하</option><option value="100000">10만 원 이하</option><option value="150000">15만 원 이하</option></select></label></div></div>
+    <fieldset class="form-field date-field"><legend>관람 가능한 날짜</legend><div class="radio-pills"><label><input type="radio" name="when" value="any" checked><span>날짜 무관</span></label><label><input type="radio" name="when" value="weekend"><span>이번 주말</span></label><label><input type="radio" name="when" value="nextweekend"><span>다음 주말</span></label><label><input type="radio" name="when" value="specific"><span>날짜 선택</span></label></div><div id="specific-date-wrap" hidden><label for="specific-date" class="sr-only">공연 날짜</label><input type="date" id="specific-date" class="control"></div></fieldset>
+    <button class="button button-primary full-width" type="submit">내 취향과 공연 매칭하기 <span>↗</span></button><p class="form-footer">* 실제 AI 호출이 아닌, 사전에 정리한 데이터 기반 추천 시연입니다.</p>
+  </form>
+  <aside class="taste-side"><div class="side-visual"><div class="mini-record"><div class="mini-center"></div></div><div class="visual-card">✧ <span>YOUR SOUND<br><strong>YOUR STAGE</strong></span></div></div><div class="side-body"><h3>무엇을 발견할 수 있나요?</h3><div class="side-step"><b>01</b><div><strong>취향을 이해하고</strong><small>장르·분위기·좋아하는 음악</small></div></div><div class="side-step"><b>02</b><div><strong>새로운 아티스트를 만나고</strong><small>유명한 팀부터 인디 밴드까지</small></div></div><div class="side-step"><b>03</b><div><strong>무대까지 연결해요</strong><small>지역·예산·날짜 조건을 확인</small></div></div></div><div class="preset-block"><span class="caps">QUICK TRY</span><p>아래 예시로 바로 체험해보세요.</p><div class="preset-buttons"><button type="button" data-preset="dream">몽환적인 인디</button><button type="button" data-preset="rock">신나는 밴드</button><button type="button" data-preset="jazz">잔잔한 재즈</button></div></div></aside>
+  </div>
+  <div id="results" class="results" hidden aria-live="polite"><div class="result-intro"><div><span class="caps result-kicker">YOUR TASTE / LIVE MATCH</span><h3>당신의 음악 지도를 만들었어요.</h3><p id="result-summary"></p></div><button type="button" class="button button-outline" id="retry">조건 다시 고르기 ↻</button></div><div id="result-tags" class="result-tags"></div><div class="result-part"><div class="part-heading"><div><span>01</span><h4>추천 아티스트 & 음악</h4></div><p>취향에 맞는 최대 3팀 · 추천 이유와 음악 링크</p></div><div id="artist-results" class="cards three-cols"></div></div><div class="result-part"><div class="part-heading"><div><span>02</span><h4>취향에 맞는 공연</h4></div><p>관람 조건이 맞는 공연만 · 실제 예매 불가 시연용</p></div><div id="event-results" class="cards three-cols"></div><div id="result-notices" class="result-notices"></div></div></div>
+</div></section>
+<section class="section artist-section" id="artists"><div class="shell"><div class="section-heading"><div><span class="section-kicker">02 / ARTIST UNIVERSE</span><h2>다음 최애를 만나는<br><span>작은 음악 지도.</span></h2><p>인지도가 아닌 취향에서 출발합니다. 익숙한 음악과 새로운 발견을 함께 살펴보세요.</p></div><div class="section-aside">12팀의 아티스트로 시작한<br>확장 가능한 음악 카탈로그</div></div>
+  <div class="toolbar"><label class="search-field"><span aria-hidden="true">⌕</span><input id="artist-search" placeholder="아티스트·장르·곡명 검색" aria-label="아티스트 검색"></label><select class="control compact" id="artist-genre"><option value="all">모든 장르</option></select><select class="control compact" id="artist-sort" aria-label="아티스트 정렬"><option value="name">이름순</option><option value="genre">장르순</option></select><span class="toolbar-count" id="artist-count">0팀</span></div>
+  <div id="artist-directory" class="directory-grid"></div><p class="section-footnote">* 실제 아티스트명과 이전 프로토타입에 등록된 음악 참고 링크를 사용합니다. 인지도에 관계없이 추천하며, 음악 링크의 재생 가능 여부는 외부 플랫폼에 따라 달라집니다.</p>
+</div></section>
+<section class="section event-section" id="events"><div class="shell"><div class="section-heading"><div><span class="section-kicker">03 / STAGES TO EXPLORE</span><h2>음악을 발견했다면,<br><span>이제 무대를 찾아볼 차례.</span></h2><p>공연을 먼저 둘러볼 수도 있어요. 저장한 공연은 이 브라우저에 보관됩니다.</p></div><div class="section-aside">시연용 공연을 조건별로 탐색<br>정식 예매·예약은 미지원</div></div>
+ <div class="event-toolbar panel"><label class="search-field"><span aria-hidden="true">⌕</span><input id="event-search" placeholder="공연명·아티스트·장소 검색" aria-label="공연 검색"></label><select class="control compact" id="event-region" aria-label="공연 지역"><option value="전체">전체 지역</option></select><select class="control compact" id="event-budget" aria-label="최대 예산"><option value="999999">전체 예산</option><option value="30000">3만 원 이하</option><option value="50000">5만 원 이하</option><option value="70000">7만 원 이하</option></select><select class="control compact" id="event-when" aria-label="공연 시기"><option value="any">모든 예정 공연</option><option value="weekend">이번 주말</option><option value="nextweekend">다음 주말</option></select><label class="saved-toggle"><input id="saved-only" type="checkbox"><span>♡ 저장한 공연만</span></label></div>
+ <div class="list-count"><strong id="event-count">0개의 공연</strong><button id="reset-event-filter" type="button" class="link-button">필터 초기화 ↺</button></div><div class="cards three-cols" id="event-directory"></div><p class="section-footnote">* 초기 공연은 모두 시연용으로 만들어진 가상 일정입니다. 저장 기능은 이 브라우저에서만 작동합니다. 개인 등록 자료는 검증되지 않은 정보입니다.</p>
+</div></section>
+<section class="section organizer-section" id="organizers"><div class="shell"><div class="section-heading"><div><span class="section-kicker">04 / FOR ARTISTS & ORGANIZERS</span><h2>당신의 음악을,<br><span>다음 관객에게.</span></h2><p>아티스트·공연 기획자 직접 등록 흐름을 시연합니다. 실제 운영 서비스에 게시되지 않아요.</p></div><div class="section-aside">SNS 자동 크롤링 대신<br>관계자가 직접 제공하는 데이터</div></div>
+  <div class="organizer-layout"><div class="panel wizard-panel"><div class="wizard-header"><div><span class="step-pill">FOR ORGANIZERS</span><h3 id="wizard-title">아티스트 정보</h3></div><span id="wizard-progress">1 / 3</span></div><div class="wizard-progressbar"><span id="wizard-fill"></span></div>
+   <form id="register-form" novalidate>
+    <div class="wizard-step" data-step="1"><p class="wizard-desc">먼저 아티스트를 소개해 주세요. 등록한 정보는 현재 브라우저의 추천 후보에 추가됩니다.</p><div class="two-fields"><label>아티스트명 <em>*</em><input class="control" name="artist" required maxlength="60" placeholder="예: 밤의 파도"></label><label>활동 형태<select class="control" name="type"><option>밴드</option><option>솔로</option><option>그룹</option><option>기타</option></select></label><label>음악 장르 <em>*</em><select class="control" name="genre" id="reg-genre" required></select></label><label>주요 분위기 <em>*</em><select class="control" name="mood" id="reg-mood" required></select></label></div><label class="block-label">아티스트 소개<textarea class="control" name="description" rows="3" maxlength="240" placeholder="아티스트의 음악적 특징이나 활동 소개"></textarea></label><div class="two-fields"><label>대표곡<input class="control" name="track" maxlength="100" placeholder="선택 사항"></label><label>음악 감상 링크 (HTTPS)<input class="control" name="trackUrl" placeholder="https://open.spotify.com/..." inputmode="url"></label></div><button type="button" class="button button-primary full-width" id="reg-next-1">다음: 공연 정보 <span>→</span></button></div>
+    <div class="wizard-step" data-step="2" hidden><p class="wizard-desc">공연 일정이 없다면 비워두고 넘어갈 수 있습니다. 공연 정보가 없더라도 아티스트 추천은 가능해요.</p><label class="block-label">공연명 (선택)<input class="control" name="event" maxlength="90" placeholder="예: 작은 밤의 라이브"></label><div class="two-fields"><label>공연 날짜<input class="control" name="date" type="date"></label><label>시작 시간<input class="control" name="time" type="time" value="19:00"></label><label>지역<select class="control" name="region" id="reg-region"></select></label><label>공연 장소<input class="control" name="venue" maxlength="100" placeholder="공연장 이름"></label><label>티켓 가격 (원)<input class="control" name="price" type="number" min="0" max="500000" placeholder="예: 35000"></label><label>공연 공지·예매 링크 (HTTPS)<input class="control" name="ticketUrl" placeholder="https://..." inputmode="url"></label></div><div class="wizard-actions"><button type="button" class="button button-quiet" id="reg-back-2">← 이전</button><button type="button" class="button button-primary" id="reg-next-2">등록 내용 확인 →</button></div></div>
+    <div class="wizard-step" data-step="3" hidden><p class="wizard-desc">등록 내용은 외부에 공개되지 않습니다. 직접 입력한 링크도 별도 검증을 거치지 않았음을 표시합니다.</p><div class="review-summary" id="reg-review"></div><div class="wizard-actions"><button type="button" class="button button-quiet" id="reg-back-3">← 수정하기</button><button type="submit" class="button button-primary" id="reg-submit">브라우저에 저장하기 ✓</button></div></div>
+   </form></div>
+   <aside class="panel organizer-side"><div class="side-head"><div><h3>내가 등록한 정보</h3><p>이 브라우저에만 저장되며, 다른 방문자에게 공유되지 않습니다.</p></div><span class="subtle" id="registered-count">0건</span></div><div id="registered-list" class="registered-list"></div><div class="data-actions"><button type="button" class="button button-outline" id="export-registrations">JSON 내보내기 ↗</button><label class="button button-outline import-label">JSON 가져오기<input type="file" id="import-registrations" accept=".json,application/json" hidden></label></div><p class="hint">저장한 정보는 직접 수정·삭제할 수 있습니다. 브라우저 데이터를 지우면 사라질 수 있어 내보내기를 권장합니다.</p><div class="organizer-why"><span class="caps">WHY DIRECT REGISTRATION?</span><h4>놓치기 쉬운 무대도<br>데이터가 될 수 있도록.</h4><p>아티스트와 관계자가 정보를 직접 제공하면 SNS 검색만으로는 발견하기 어려웠던 공연도 추천 후보에 포함할 수 있습니다.</p></div></aside>
+  </div>
+</div></section>
+<section class="section qa-section" id="qa"><div class="shell"><div class="section-heading"><div><span class="section-kicker">05 / CHECK THE EXPERIENCE</span><h2>추천은 설명할 수 있어야 해요.</h2><p>서로 다른 취향·관람 조건으로 추천 엔진의 핵심 규칙을 점검합니다.</p></div></div><div class="panel test-panel"><div class="test-header"><div><h3>추천 시나리오 자동 점검</h3><p>장르·분위기·지역·날짜·예산·대체 공연 처리 확인</p></div><button type="button" class="button button-outline" id="run-tests">다시 검사 ↻</button></div><div id="test-rows" class="test-rows"></div><p id="test-summary" class="test-summary"></p><div class="qa-note">참고: 이 테스트는 브라우저 내부의 추천 로직을 검증합니다. 음악 링크의 실제 재생, 공연의 실재 여부 및 구매 전환 성과는 확인하지 않습니다.</div></div></div></section>
+</main>
+<footer class="footer"><div class="shell footer-inner"><div><a class="brand" href="#home"><span class="brand-icon">✳</span> stagepick<span class="brand-period">.</span></a><p>좋아하는 음악, 그다음은 무대.</p></div><div class="footer-legal">AI:GO · AX 개인 프로젝트 / StagePick v2<br>실제 서비스가 아닌 배포용 시연 프로토타입입니다.<br>공연은 가상 데이터이며 예약·결제 기능이 없습니다.</div><a href="#home" class="back-top">맨 위로 ↑</a></div></footer>
+<dialog id="artist-dialog" class="artist-dialog" aria-labelledby="dialog-title"><button class="dialog-close" id="dialog-close" type="button" aria-label="상세 창 닫기">✕</button><div id="dialog-content"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="js/data.js" defer></script>
+<script src="js/recommend.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>
